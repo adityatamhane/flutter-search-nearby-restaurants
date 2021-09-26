@@ -1,3 +1,4 @@
+import 'package:application/api/apiHandler.dart';
 import 'package:application/controllers/restaurantsController.dart';
 import 'package:application/utils/reusableWidgets.dart';
 import 'package:flutter/material.dart';
