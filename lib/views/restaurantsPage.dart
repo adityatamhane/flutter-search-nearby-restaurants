@@ -6,8 +6,10 @@ import 'package:get/get.dart';
 class RestaurantsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false, home: RestaurantsPageHome());
+    return GestureDetector(
+        onTap: () => FocusScope.of(context).requestFocus(new FocusNode()),
+        child: MaterialApp(
+            debugShowCheckedModeBanner: false, home: RestaurantsPageHome()));
   }
 }
 
@@ -21,6 +23,7 @@ class _RestaurantsPageHomeState extends State<RestaurantsPageHome> {
   late ScrollController _scrollController;
   @override
   void initState() {
+    WidgetsFlutterBinding.ensureInitialized();
     initData();
     super.initState();
   }
@@ -150,6 +153,7 @@ class _RestaurantsPageHomeState extends State<RestaurantsPageHome> {
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: TextFormField(
+                  key: ValueKey('edit_search'),
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: "Search for restraurants",
@@ -159,7 +163,11 @@ class _RestaurantsPageHomeState extends State<RestaurantsPageHome> {
                     ),
                   ),
                   onChanged: (val) {
-                    restaurantController.getSearchResturants(val);
+                    if (val != "") {
+                      restaurantController.getSearchResturants(val);
+                    } else {
+                      restaurantController.isLoading.value = false;
+                    }
                   },
                 ),
               )),

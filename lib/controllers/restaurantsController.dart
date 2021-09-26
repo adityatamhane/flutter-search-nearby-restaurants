@@ -41,9 +41,7 @@ class RestaurantController extends GetxController {
     print("query = " + query);
     await Future.delayed(Duration(seconds: 1));
     var url =
-        "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=47.6204,-122.3491&radius=2500&type=restaurant&keyword=" +
-            query +
-            "&key=AIzaSyDxVclNSQGB5WHAYQiHK-VxYKJelZ_9mjk";
+        "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=47.6204,-122.3491&radius=2500&type=restaurant&key=AIzaSyDxVclNSQGB5WHAYQiHK-VxYKJelZ_9mjk";
     var resturantsData = await ApiHandler.hitGetApi(url);
     print("search data" + resturantsData.toString());
     var data = jsonDecode(resturantsData);

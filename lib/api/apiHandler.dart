@@ -10,11 +10,9 @@ class ApiHandler {
       print("api response = " + url.toString());
       var response = await client.get(myUri);
       print("api response = " + response.toString());
-      if (response != null) {
-        if (response.statusCode == 200) {
-          jsonString = response.body;
-          return jsonString;
-        }
+      if (response.statusCode == 200) {
+        jsonString = response.body;
+        return jsonString;
       }
     } finally {
       client.close();
